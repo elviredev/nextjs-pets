@@ -63,17 +63,17 @@ export default function Chat() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({message: userMessage, socket_id: socketId})
+            body: JSON.stringify({ message: userMessage.trim(), socket_id: socketId })
         })
         // envoyer le message à notre copie locale de l'état
-        setMessageLog(prev => [...prev, {selfMessage: true, message: userMessage}])
+        setMessageLog(prev => [...prev, { selfMessage: true, message: userMessage.trim() }])
         // vider le champ input à chaque soulission du form
         setUserMessage("")
     }
 
     // Gérer le champ input
     function handleInputChange(e) {
-        setUserMessage(e.target.value.trim())
+        setUserMessage(e.target.value)
     }
 
     return (
