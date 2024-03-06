@@ -14,8 +14,8 @@ export async function POST(request) {
 
   console.log(incoming)
   // borrow code from express version etc...
-  if (incoming.answer.toUpperCase() !== "PUPPY") {
-    return NextResponse.json({ message: "Sorry" })
+  if (incoming.answer.toUpperCase() !== "CHIOT") {
+    return NextResponse.json({ message: "Désolé" })
   }
 
   const ourObject = {
@@ -25,7 +25,7 @@ export async function POST(request) {
   }
 
   if (!ObjectId.isValid(incoming.petId)) {
-    return NextResponse.json({ message: "Bad id" })
+    return NextResponse.json({ message: "ID invalide" })
   }
 
   ourObject.petId = new ObjectId(incoming.petId)
@@ -38,8 +38,8 @@ export async function POST(request) {
   if (doesPetExist) {
     await client.db().collection("contacts").insertOne(ourObject)
 
-    // send mailtrap emails here
-    var transport = nodemailer.createTransport({
+    // Configurer email via mailtrap avec NodeJS
+    const transport = nodemailer.createTransport({
       host: "sandbox.smtp.mailtrap.io",
       port: 2525,
       auth: {
@@ -48,22 +48,27 @@ export async function POST(request) {
       }
     })
 
+    // Envoyer email à l'utilisateur intéressé par l'animal
     transport.sendMail({
       to: ourObject.email,
       from: "admin@localhost",
-      subject: `Thank you for your interest in ${doesPetExist.name}`,
-      html: `<h3 style="color: #475aff; font-size: 30px; font-weight: normal;">Thank you!</h3><p>We appreciate your interest in ${doesPetExist.name} and one of our staff members will reach out to you shortly! Below is a copy of the message you sent us for your personal recrods:</p><p><em>${ourObject.comment}</em></p>`
+      subject: `Merci de votre intérêt pour ${doesPetExist.name}`,
+      html: `<h3 style="color: #475aff; font-size: 30px; font-weight: normal;">Merci beaucoup !</h3>
+      <p>Nous apprécions votre intérêt pour ${doesPetExist.name} et un membre de l'équipe prendra contact avec vous rapidement. Vous trouverez ci-dessous une copie du message que vous nous avez envoyé pour vos dossiers personnels:</p>
+      <p><em>${ourObject.comment}</em></p>`
     })
 
+    // Envoyer un email à l'administrateur du site web
     transport.sendMail({
       to: "adoptioncenter@localhost",
       from: "admin@localhost",
-      subject: `Someone is interested in ${doesPetExist.name}`,
-      html: `<h3 style="color: #475aff; font-size: 30px; font-weight: normal;">New Contact!</h3><p>
-      Name: ${ourObject.name} <br>
-      Pet Interested In: ${doesPetExist.name}<br>
-      Email: ${ourObject.email}<br>
-      Message: ${ourObject.comment}
+      subject: `Quelqu'un est intéressé par ${doesPetExist.name}`,
+      html: `<h3 style="color: #475aff; font-size: 30px; font-weight: normal;">Nouveau Contact !</h3>
+       <p>
+        Nom: ${ourObject.name} <br>
+        Animal concerné: ${doesPetExist.name}<br>
+        Email: ${ourObject.email}<br>
+        Message: ${ourObject.comment}
       </p>`
     })
 

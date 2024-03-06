@@ -26,9 +26,9 @@ export default function PetCard(props) {
 
   function petPhoto(photo) {
     if (pet.photo) {
-      return <img src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDNAME}/image/upload/w_660,h_784,c_fill/${pet.photo}.jpg`} alt={`A ${pet.species} named ${pet.name}`} />
+      return <img src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDNAME}/image/upload/w_660,h_784,c_fill/${pet.photo}.jpg`} alt={`Un(e) ${pet.species} nommé ${pet.name}`} />
     } else {
-      return <img src="/images/fallback.jpg" alt={`A ${pet.species} named ${pet.name}`} />
+      return <img src="/images/fallback.jpg" alt={`Un(e) ${pet.species} nommé ${pet.name}`} />
     }
   }
 
@@ -43,13 +43,13 @@ export default function PetCard(props) {
         <p className="pet-description">{pet.description}</p>
         <div className="action-buttons">
           <Link href={`/admin/edit-pet/${pet._id}`} className="action-btn">
-            Edit
+            Modifier
           </Link>
           <Link href={`/admin/view-pet-contacts/${pet._id}`} className="action-btn">
-            View Contacts
+            Voir Contacts
           </Link>
           <button className="action-btn" onClick={handleDeleteClick}>
-            Delete
+            Supprimer
           </button>
         </div>
       </div>

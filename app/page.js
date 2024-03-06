@@ -6,10 +6,22 @@ async function getData() {
   const client = await clientPromise
   const pets = await client.db().collection("pets").find().toArray()
 
-  const weatherPromise = await fetch("https://api.weather.gov/gridpoints/MFL/110,50/forecast")
+  /*
+ * Api Data Météo - Ville de Chelles
+ * https://www.infoclimat.fr/api-previsions-meteo.html?id=3025622&cntry=FR
+ */
+  const weatherPromise = await fetch("https://www.infoclimat.fr/public-api/gfs/json?_ll=48.88109,2.59295&_auth=ABoAF1UrBCYCLwE2VCJWf1kxVGEKfFN0BHgFZghtVClSOVI%2BD20BY1YwBHlTfAI0UXwPalxqU2kKYAdlAHIEeABgAGRVNARjAmsBYVRmVn1ZdVQ8CjNTbQRlBWQIelQoUjBSMg9rAX1WOARgU2ICKFFgD2xcYVN1CmEHYgByBHgAYgBjVTYEYQJpAWRUZlZmWWxUNwoqU3QEYQVnCDZUMlJnUjAPaAE1VjoEYVM3AmdRMA9nXH1TbApvB2YAZQRvAGUAZ1UxBHkCcgEaVBdWf1kqVHYKYFMtBHoFNwg7VGM%3D&_c=b94fdf29ef9a71d11bbb328a194575ae")
   const weatherData = await weatherPromise.json()
 
-  const temperature = weatherData.properties.periods[0].temperature
+  let currentDate = new Date()
+  let year = currentDate.getFullYear()
+  let month = ('0' + (currentDate.getMonth() + 1)).slice(-2)
+  let day = ('0' + currentDate.getDate()).slice(-2)
+
+  let formattedDate = year + '-' + month + '-' + day + ' 13:00:00';
+  const temperature = (weatherData[formattedDate].temperature.sol - 273).toFixed(1);
+
+  //const temperature = weatherData.properties.periods[0].temperature
 
   return { pets, temperature }
 }
@@ -28,11 +40,11 @@ const HomePage = async () => {
         <div className="top-section">
 
           <div className="actual-top-content">
-            <h1>Find Your New Bestie</h1>
-            <p className="intro-text">The most amazing list of adoptable pets at your fingertips. Updated fresh daily!</p>
+            <h1>Trouvez votre meilleur ami.</h1>
+            <p className="intro-text">La liste la plus étonnante d’animaux adoptables à portée de main. Mis à jour quotidiennement !</p>
             <div className="intro-buttons">
-              <Link href="#view-pets" className="our-btn utility-mr">View Pets</Link>
-              <Link href="/admin" className="our-btn our-btn--outline">Manage Pets</Link>
+              <Link href="#view-pets" className="our-btn utility-mr">Voir Amis</Link>
+              <Link href="/admin" className="our-btn our-btn--outline">Gérer Amis</Link>
             </div>
 
             <div className="intro-features">
@@ -50,9 +62,10 @@ const HomePage = async () => {
                   </defs>
                 </svg>
 
-                <h2>Sunny Play</h2>
+                <h2>Jeux en plein air</h2>
 
-                <p>Our center is located in beautiful Miami, and it&rsquo;s currently {temperature}°F at our pet playground.
+                <p>
+                  Notre centre est situé dans la belle ville de Chapelon, et il fait actuellement {temperature}°C sur notre aire de jeux pour animaux de compagnie.
                 </p>
               </div>
               <div className="intro-feature">
@@ -69,9 +82,9 @@ const HomePage = async () => {
                   </defs>
                 </svg>
 
-                <h2>Dedicated Staff</h2>
+                <h2>Personnel dévoué</h2>
 
-                <p>Our center has over 70 volunteers who play with the pets four times daily.</p>
+                <p>Notre centre compte plus de 70 bénévoles qui jouent avec les animaux quatre fois par jour.</p>
               </div>
               <div className="intro-feature">
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -87,9 +100,9 @@ const HomePage = async () => {
                   </defs>
                 </svg>
 
-                <h2>Voted #1</h2>
+                <h2>Récompenses</h2>
 
-                <p>For the last five years we&rsquo;ve consistently been voted the #1 pet adoption center in the state.</p>
+                <p>Au cours des cinq dernières années, nous avons régulièrement été élus centre d'adoption d'animaux de compagnie n°1 dans la région.</p>
               </div>
               <div className="intro-feature">
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -108,10 +121,9 @@ const HomePage = async () => {
                   </defs>
                 </svg>
 
-                <h2>Nightly Yoga</h2>
+                <h2>Yoga du soir</h2>
 
-                <p>Every night our staff leads a yoga session and the animals are free to roam around and relax around
-                  people.
+                <p>Chaque soir, notre personnel organise une séance de yoga et les animaux sont libres de se promener et de se détendre en présence des gens.
                 </p>
               </div>
             </div>

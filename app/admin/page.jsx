@@ -11,5 +11,5 @@ const AdminPage = async () => {
 export default AdminPage
 
 export const metadata = {
-  title: "Admin Dashboard"
+  title: "TdB Admin"
 }

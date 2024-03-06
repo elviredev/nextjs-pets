@@ -32,8 +32,8 @@ export async function POST(request) {
     ourObject.birthYear = incoming.birthYear
   }
 
-  if (ourObject.species != "cat" && ourObject.species != "dog") {
-    ourObject.species = "dog"
+  if (ourObject.species != "chat" && ourObject.species != "chien" && ourObject.species != "lapin" && ourObject.species != "poule") {
+    ourObject.species = "chien"
   }
 
   const expectedSignature = cloudinary.utils.api_sign_request({ public_id: incoming.public_id, version: incoming.version }, cloudinaryConfig.api_secret)

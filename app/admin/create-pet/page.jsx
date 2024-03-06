@@ -88,16 +88,18 @@ const CreatePage = () => {
       <div className="page-section">
         <div className="page-section-inner">
           <Link href="/admin" className="small-link">
-            &laquo; Back to admin dashboard
+            &laquo; Retour à la page d'administration
           </Link>
 
-          <h1 className="page-section-title mb-big">Add New Pet</h1>
+          <h1 className="page-section-title mb-big">Ajouter un nouvel ami</h1>
           <form onSubmit={handleSubmit} id="manage-pet-form" action="/admin/store-pet" method="POST">
-            <input className="form-field" type="text" name="name" autoComplete="off" placeholder="name" />
-            <input className="form-field" type="text" name="birthYear" autoComplete="off" placeholder="Year born (e.g. 2019)" />
+            <input className="form-field" type="text" name="name" autoComplete="off" placeholder="Nom" />
+            <input className="form-field" type="text" name="birthYear" autoComplete="off" placeholder="Année de naissance (e.g. 2019)" />
             <select className="form-field" name="species">
-              <option>dog</option>
-              <option>cat</option>
+              <option>chien</option>
+              <option>chat</option>
+              <option>lapin</option>
+              <option>poule</option>
             </select>
             <textarea className="form-field" name="description" placeholder="Description..."></textarea>
 
@@ -111,7 +113,7 @@ const CreatePage = () => {
             <input id="version" type="hidden" name="version" />
             <input id="signature" type="hidden" name="signature" />
             <button style={{ opacity: isFormLocked ? ".1" : "1" }} id="submit-btn" className="our-btn">
-              Add New Pet
+              Ajouter cet ami
             </button>
           </form>
         </div>

@@ -5,10 +5,10 @@ export default function OurVision() {
     <div className="page-section">
       <div className="page-section-inner">
         <Link href="/" className="small-link">
-          &laquo; Back to home
+          &laquo; Retour à l'accueil
         </Link>
 
-        <h2 className="page-section-title">Our Vision</h2>
+        <h2 className="page-section-title">Notre Vision</h2>
         <div className="generic-page-content">
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia rem sequi neque, nostrum sapiente quas quasi ut maxime repellendus nemo vitae esse itaque illum deleniti officia, aliquam fuga. Quibusdam, dolores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit vel minus eum amet minima aliquam, facilis beatae, laboriosam, quasi excepturi nesciunt maxime reiciendis nobis sunt! Ipsam tenetur accusantium mollitia asperiores.</p>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Praesentium delectus a blanditiis ut perspiciatis, asperiores voluptatum, aspernatur minus est soluta ipsam voluptatem accusamus vel obcaecati repudiandae odit hic maiores possimus.</p>

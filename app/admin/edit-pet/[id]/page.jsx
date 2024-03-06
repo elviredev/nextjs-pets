@@ -4,7 +4,7 @@ import clientPromise from "../../../../lib/mongodb"
 const { ObjectId } = require("mongodb")
 
 export const metadata = {
-  title: "Edit Existing Pet"
+  title: "Modifier un ami"
 }
 
 async function fetchPet(id) {
@@ -29,10 +29,10 @@ const EditPage = async ({ params }) => {
       <div className="page-section">
         <div className="page-section-inner">
           <Link href="/admin" className="small-link">
-            &laquo; Back to admin dashboard
+            &laquo; Retour à la page d'administration
           </Link>
 
-          <h1 className="page-section-title mb-big">Not Found!</h1>
+          <h1 className="page-section-title mb-big">Non trouvé!</h1>
         </div>
       </div>
     )
@@ -45,10 +45,10 @@ const EditPage = async ({ params }) => {
       <div className="page-section">
         <div className="page-section-inner">
           <Link href="/admin" className="small-link">
-            &laquo; Back to admin dashboard
+            &laquo; Retour à la page d'administration
           </Link>
 
-          <h1 className="page-section-title mb-big">Update a Pet</h1>
+          <h1 className="page-section-title mb-big">Modifier un ami</h1>
           <EditForm pet={pet} />
         </div>
       </div>
