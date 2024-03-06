@@ -5,10 +5,10 @@ export default function OurHistory() {
     <div className="page-section">
       <div className="page-section-inner">
         <Link href="/" className="small-link">
-          &laquo; Back to home
+          &laquo; Retour à l'accueil
         </Link>
 
-        <h2 className="page-section-title">Our History</h2>
+        <h2 className="page-section-title">Notre Histoire</h2>
         <div className="generic-page-content">
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia rem sequi neque, nostrum sapiente quas quasi ut maxime repellendus nemo vitae esse itaque illum deleniti officia, aliquam fuga. Quibusdam, dolores.</p>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos recusandae dolorum repellendus laudantium itaque ipsam inventore magnam illo nemo fugit rem, officiis omnis soluta repudiandae, quod, sint praesentium. Ratione, rem? Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi beatae exercitationem quibusdam maiores repudiandae autem quisquam asperiores consequuntur eum natus ipsam in, praesentium adipisci dicta nobis esse accusantium! Nostrum, necessitatibus.</p>

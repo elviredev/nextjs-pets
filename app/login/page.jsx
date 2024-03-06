@@ -28,14 +28,14 @@ export default function Login() {
     <div className="page-section">
       <div className="page-section-inner">
         <a href="/" className="small-link">
-          &laquo; Back to homepage
+          &laquo; Retour à l'accueil
         </a>
 
-        <h1 className="page-section-title mb-big">You need to login first.</h1>
+        <h1 className="page-section-title mb-big">Vous devez d'abord vous connecter.</h1>
         <form onSubmit={handleSubmit}>
-          <input autoFocus autoComplete="off" className="form-field" type="text" name="username" placeholder="Username" />
-          <input className="form-field" name="password" type="password" placeholder="Password" />
-          <button className="our-btn">Login</button>
+          <input autoFocus autoComplete="off" className="form-field" type="text" name="username" placeholder="Pseudo" />
+          <input className="form-field" name="password" type="password" placeholder="Mot de passe" />
+          <button className="our-btn">Connexion</button>
         </form>
       </div>
     </div>

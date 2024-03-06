@@ -3,16 +3,20 @@
 import Link from "next/link"
 import axios from "axios"
 import { useRouter } from "next/navigation"
+import Chat from "./chat";
 
 export default function Footer(props) {
   function AdminFooterOrNot() {
     if (props.isAdmin) {
       return (
-        <p className="logout-text">
-          <a href="" onClick={handleClick}>
-            Logout
-          </a>
-        </p>
+          <>
+            <Chat />
+            <p className="logout-text">
+              <a href="" onClick={handleClick}>
+                Déconnexion
+              </a>
+            </p>
+          </>
       )
     } else {
       return <></>
@@ -33,11 +37,11 @@ export default function Footer(props) {
       <footer className="site-footer">
         {AdminFooterOrNot()}
         <p className="footer-nav">
-          <Link href="/">Home</Link>
-          <Link href="/our-history">Our History</Link>
-          <Link href="/our-vision">Our Vision</Link>
+          <Link href="/">Accueil</Link>
+          <Link href="/our-history">Notre Histoire</Link>
+          <Link href="/our-vision">Notre Vision</Link>
         </p>
-        <p>&copy; 2023 Fake Adoption Center. All rights reserved.</p>
+        <p>&copy; 2024 Faux centre d'adoption. Tous droits réservés.</p>
       </footer>
     </>
   )

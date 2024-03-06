@@ -7,7 +7,7 @@ export default function PetsListSection(props) {
   const [styleObject, setStyleObject] = useState({ display: "none" })
   const [isOverlayOpen, setIsOverlayOpen] = useState(false)
   const [formWasJustSent, setFormWasJustSent] = useState(false)
-  const [currentFilter, setCurrentFilter] = useState("all")
+  const [currentFilter, setCurrentFilter] = useState("tous")
   const pets = props.pets
 
   async function contactSubmit(e) {
@@ -62,18 +62,24 @@ export default function PetsListSection(props) {
     <>
       <div className="page-section" id="view-pets">
         <div className="page-section-inner">
-          <h2 className="page-section-title">Meet Our Friends</h2>
+          <h2 className="page-section-title">Rencontrez nos amis</h2>
           <div className="pet-filter">
             <p>
-              Show me:{" "}
-              <button className={currentFilter == "all" ? "active" : ""} onClick={() => setCurrentFilter("all")}>
-                All Pets
+              Nos amis:{" "}
+              <button className={currentFilter == "tous" ? "active" : ""} onClick={() => setCurrentFilter("tous")}>
+                Tous
               </button>{" "}
-              <button onClick={() => setCurrentFilter("dog")} className={currentFilter == "dog" ? "active" : ""}>
-                Only Dogs
+              <button onClick={() => setCurrentFilter("chien")} className={currentFilter == "chien" ? "active" : ""}>
+                Chiens
               </button>{" "}
-              <button onClick={() => setCurrentFilter("cat")} className={currentFilter == "cat" ? "active" : ""}>
-                Only Cats
+              <button onClick={() => setCurrentFilter("chat")} className={currentFilter == "chat" ? "active" : ""}>
+                Chats
+              </button>
+              <button onClick={() => setCurrentFilter("lapin")} className={currentFilter == "lapin" ? "active" : ""}>
+                Lapins
+              </button>
+              <button onClick={() => setCurrentFilter("poule")} className={currentFilter == "poule" ? "active" : ""}>
+                Poules
               </button>
             </p>
           </div>
@@ -81,7 +87,7 @@ export default function PetsListSection(props) {
           <div className="list-of-pets">
             {pets
               .filter(pet => {
-                if (currentFilter == "all") {
+                if (currentFilter == "tous") {
                   return true
                 }
 
@@ -100,11 +106,11 @@ export default function PetsListSection(props) {
                   const currentYear = new Date().getFullYear()
                   const age = currentYear - birthYear
 
-                  if (age == 1) return "1 year old"
+                  if (age == 1) return "1 an"
 
-                  if (age == 0) return "Less than a year old"
+                  if (age == 0) return "Moins d'un an"
 
-                  return `${age} years old`
+                  return `${age} ans`
                 }
                 return (
                   <div key={pet._id.toString()} className="pet-card" data-species={pet.species}>
@@ -142,12 +148,12 @@ export default function PetsListSection(props) {
       <div style={styleObject} className={isOverlayOpen ? "form-overlay form-overlay--is-visible" : "form-overlay"}>
         <form onSubmit={contactSubmit} className="form-overlay-inner" action="">
           <div className="form-content">
-            <input autoComplete="off" name="name" className="form-field" type="text" aria-label="Your Name" placeholder="Your Name" />
-            <input autoComplete="off" name="email" className="form-field" type="text" aria-label="Email Address" placeholder="Email Address" />
-            <input autoComplete="off" name="answer" className="form-field" type="text" aria-label="What is the word for a baby dog?" placeholder="What is the word for a baby dog?" />
-            <textarea name="comment" className="form-field" placeholder="Comment (optional)"></textarea>
+            <input autoComplete="off" name="name" className="form-field" type="text" aria-label="Votre nom" placeholder="Votre nom" />
+            <input autoComplete="off" name="email" className="form-field" type="text" aria-label="Adresse Email" placeholder="Adresse Email" />
+            <input autoComplete="off" name="answer" className="form-field" type="text" aria-label="Quel est le mot pour un bébé chien?" placeholder="Quel est le mot pour un bébé chien?" />
+            <textarea name="comment" className="form-field" placeholder="Commentaire (optionnel)"></textarea>
             <div className="justify-right">
-              <button className="our-btn">Submit</button>
+              <button className="our-btn">Envoyer</button>
             </div>
             <div className="close-form-overlay" onClick={closeOverlay}>
               x
@@ -156,7 +162,7 @@ export default function PetsListSection(props) {
           <div className="form-photo">
             <img className="overlay-pet-photo" src={petInQuestion.photo ? `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDNAME}/image/upload/w_660,h_784,c_fill/${petInQuestion.photo}.jpg` : "/images/fallback.jpg"} alt={`A ${petInQuestion.species} named ${petInQuestion.name}`} />
             <p>
-              Thank you for your interest in <strong className="overlay-pet-name">{petInQuestion.name}.</strong>
+              Merci de votre intérêt pour <strong className="overlay-pet-name">{petInQuestion.name}.</strong>
             </p>
           </div>
           <div className={formWasJustSent ? "thank-you thank-you--visible" : "thank-you"}>
@@ -164,7 +170,7 @@ export default function PetsListSection(props) {
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-check-circle-fill" viewBox="0 0 16 16">
                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
               </svg>
-              Thank you for reaching out.
+              Merci de nous avoir contactés.
             </p>
           </div>
         </form>

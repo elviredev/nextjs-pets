@@ -7,7 +7,7 @@ const ss3 = Source_Sans_3({ subsets: ["latin"] })
 
 export const metadata = {
   title: "Pet Adoption",
-  description: "The best local pet adoption center."
+  description: "Le meilleur centre d'adoption d'animaux de compagnie dans la région."
 }
 
 export default function RootLayout({ children }) {

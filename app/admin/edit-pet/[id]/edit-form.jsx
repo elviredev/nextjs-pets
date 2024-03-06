@@ -91,8 +91,10 @@ export default function EditForm(props) {
       <input className="form-field" type="text" name="name" autoComplete="off" defaultValue={pet.name} />
       <input className="form-field" type="text" name="birthYear" autoComplete="off" defaultValue={pet.birthYear} />
       <select defaultValue={pet.species} className="form-field" id="species-select" name="species">
-        <option>dog</option>
-        <option>cat</option>
+        <option>chien</option>
+        <option>chat</option>
+        <option>lapin</option>
+        <option>poule</option>
       </select>
       <textarea className="form-field" name="description" defaultValue={pet.description}></textarea>
 
@@ -107,7 +109,7 @@ export default function EditForm(props) {
       <input id="signature" type="hidden" name="signature" />
 
       <button style={{ opacity: isFormLocked ? ".1" : "1" }} id="submit-btn" className="our-btn">
-        Submit Changes
+        Modifier
       </button>
     </form>
   )
